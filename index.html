@@ -1,84 +1,517 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>روابط مهمة</title>
-  <style>
-    body {
-      font-family: "Cairo", sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e3a8a);
-      color: white;
-      text-align: center;
-      padding: 30px;
-      margin: 0;
-    }
-    h1 {
-      margin-bottom: 20px;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .link-card {
-      background: rgba(255,255,255,0.1);
-      border-radius: 15px;
-      padding: 15px;
-      margin: 15px auto;
-      max-width: 350px;
-      transition: transform 0.3s, background 0.3s;
-    }
-    .link-card:hover {
-      transform: scale(1.05);
-      background: rgba(255,255,255,0.2);
-    }
-    a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-      display: block;
-    }
-    small {
-      font-size: 14px;
-      color: #cbd5e1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>روابط مهمة</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Cairo", sans-serif;
+            min-height: 100vh;
+            color: white;
+
+            background:
+                radial-gradient(circle at top right, rgba(59, 130, 246, 0.25), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.25), transparent 35%),
+                linear-gradient(135deg, #080b18, #111827 55%, #0f172a);
+
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Background decorations */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::before {
+            width: 250px;
+            height: 250px;
+            background: rgba(37, 99, 235, 0.25);
+            top: -80px;
+            left: -80px;
+        }
+
+        body::after {
+            width: 300px;
+            height: 300px;
+            background: rgba(124, 58, 237, 0.2);
+            bottom: -100px;
+            right: -100px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            margin: auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 25px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(59, 130, 246, 0.35),
+                rgba(139, 92, 246, 0.35)
+            );
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.3),
+                inset 0 0 25px rgba(255,255,255,0.05);
+
+            font-size: 38px;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        /* Links */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            min-height: 78px;
+            padding: 14px 18px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.10);
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            text-decoration: none;
+            color: white;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .link-card::before {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+
+            background: rgba(255,255,255,0.04);
+
+            border-radius: 50%;
+
+            left: -50px;
+            top: -60px;
+
+            transition: transform 0.4s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+
+            background: rgba(255,255,255,0.12);
+
+            border-color: rgba(255,255,255,0.22);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        .link-card:hover::before {
+            transform: scale(2);
+        }
+
+        /* Icon */
+        .icon {
+            width: 50px;
+            height: 50px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            font-size: 23px;
+
+            margin-left: 15px;
+
+            background: rgba(255,255,255,0.08);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            z-index: 1;
+        }
+
+        /* Text */
+        .content {
+            flex: 1;
+            text-align: right;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .description {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        /* Arrow */
+        .arrow {
+            font-size: 14px;
+            color: #64748b;
+            transition: transform 0.3s ease, color 0.3s ease;
+            z-index: 1;
+        }
+
+        .link-card:hover .arrow {
+            transform: translateX(-5px);
+            color: white;
+        }
+
+        /* Different icon backgrounds */
+
+        .whatsapp .icon {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+        }
+
+        .youtube .icon {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+        }
+
+        .facebook .icon {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+        }
+
+        .comic .icon {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+        }
+
+        .tiktok .icon {
+            background: rgba(236, 72, 153, 0.15);
+            color: #f472b6;
+        }
+
+        .platform .icon {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .link-card {
+                min-height: 72px;
+                padding: 12px 14px;
+            }
+
+            .icon {
+                width: 46px;
+                height: 46px;
+                font-size: 20px;
+                margin-left: 12px;
+            }
+
+            .title {
+                font-size: 15px;
+            }
+
+            .description {
+                font-size: 11px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <h1>📌 روابط هامة</h1>
 
-  <div class="link-card">
-    <a href="https://chat.whatsapp.com/BTBX4nFoVHA1lZs9CoAKAN" target="_blank">لينك واتس اب اولى</a>
-    <small>(جوا الcommunity خش اعمل join لجروب سنترك)</small>
-  </div>
+<div class="container">
 
-  <div class="link-card">
-    <a href="https://chat.whatsapp.com/GgyIhEltDET5qhzTocY02V" target="_blank">لينك واتس اب تانيه</a>
-    <small>(جوا الcommunity خش اعمل join لجروب سنترك)</small>
-  </div>
+    <!-- Header -->
+    <header class="header">
 
-  <div class="link-card">
-    <a href="https://chat.whatsapp.com/Exbh4zQuhsVK0PkUQAuyYN" target="_blank">لينك واتس اب تالته</a>
-    <small>(جوا الcommunity خش اعمل join لجروب سنترك)</small>
-  </div>
+        <div class="logo">
+            🔗
+        </div>
 
-  <div class="link-card">
-    <a href="https://youtube.com/@ahmedmohie36?si=RAaWU-E4QGFE7t9B" target="_blank">🎥 لينك اليوتيوب</a>
-  </div>
+        <h1>روابط مهمة</h1>
 
-  <div class="link-card">
-    <a href="https://www.facebook.com/share/1hNuwrLMc8/" target="_blank">📘 لينك الفيس البيدج</a>
-  </div>
+        <p class="subtitle">
+            كل الروابط اللي هتحتاجها في مكان واحد
+        </p>
 
-  <div class="link-card">
-    <a href="https://www.facebook.com/groups/623373811562247/?ref=share&mibextid=NSMWBT" target="_blank">📚 لينك صفحة الكوميك</a>
-  </div>
+    </header>
 
-  <div class="link-card">
-    <a href="https://www.tiktok.com/@mo7y?_t=ZS-8zKo1Ch1XCq&_r=1" target="_blank">🎵 لينك التيك توك</a>
-  </div>
 
-  <div class="link-card">
-    <a href="https://yamenxy.github.io/Social_media/" target="_blank">📝 المنصة بتاعتك (للتسجيل واستلام الكارت)</a>
-  </div>
+    <!-- Links -->
+    <div class="links">
+
+        <!-- First Year -->
+        <a class="link-card whatsapp"
+           href="https://chat.whatsapp.com/KNOE0u3nS5BBHNIOteA1wq?s=cl&p=a&ilr=1"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="icon">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <div class="content">
+                <div class="title">واتساب — سنة أولى</div>
+                <div class="description">
+                    ادخل الـ Community واعمل Join لجروب سنترك
+                </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-left arrow"></i>
+
+        </a>
+
+
+        <!-- Second Year -->
+        <a class="link-card whatsapp"
+           href="https://chat.whatsapp.com/GgyIhEltDET5qhzTocY02V?s=cl&p=a&ilr=1"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="icon">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <div class="content">
+                <div class="title">واتساب — سنة تانية</div>
+                <div class="description">
+                    ادخل الـ Community واعمل Join لجروب سنترك
+                </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-left arrow"></i>
+
+        </a>
+
+
+        <!-- Third Year -->
+        <a class="link-card whatsapp"
+           href="https://chat.whatsapp.com/Exbh4zQuhsVK0PkUQAuyYN?s=cl&p=a&ilr=1"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="icon">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <div class="content">
+                <div class="title">واتساب — سنة تالتة</div>
+                <div class="description">
+                    ادخل الـ Community واعمل Join لجروب سنترك
+                </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-left arrow"></i>
+
+        </a>
+
+
+        <!-- YouTube -->
+        <a class="link-card youtube"
+           href="https://youtube.com/@ahmedmohie36?si=RAaWU-E4QGFE7t9B"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="icon">
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+
+            <div class="content">
+                <div class="title">قناة اليوتيوب</div>
+                <div class="description">
+                    تابع الفيديوهات والمحتوى التعليمي
+                </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-left arrow"></i>
+
+        </a>
+
+
+        <!-- Facebook Page -->
+        <a class="link-card facebook"
+           href="https://www.facebook.com/share/1hNuwrLMc8/"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="icon">
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+
+            <div class="content">
+                <div class="title">صفحة الفيسبوك</div>
+                <div class="description">
+                    تابع الصفحة لمعرفة آخر الأخبار
+                </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-left arrow"></i>
+
+        </a>
+
+
+        <!-- Facebook Group -->
+        <a class="link-card comic"
+           href="https://www.facebook.com/groups/623373811562247/?ref=share&mibextid=NSMWBT"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="icon">
+                <i class="fa-brands fa-facebook"></i>
+            </div>
+
+            <div class="content">
+                <div class="title">صفحة الكوميك</div>
+                <div class="description">
+                    انضم للجروب وشارك مع باقي الطلاب
+                </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-left arrow"></i>
+
+        </a>
+
+
+        <!-- TikTok -->
+        <a class="link-card tiktok"
+           href="https://www.tiktok.com/@mo7y?_t=ZS-8zKo1Ch1XCq&_r=1"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="icon">
+                <i class="fa-brands fa-tiktok"></i>
+            </div>
+
+            <div class="content">
+                <div class="title">تيك توك</div>
+                <div class="description">
+                    تابع المحتوى على TikTok
+                </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-left arrow"></i>
+
+        </a>
+
+
+        <!-- Platform -->
+        <a class="link-card platform"
+           href="https://yamenxy.github.io/Social_media/"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="content">
+                <div class="title">المنصة التعليمية</div>
+                <!-- <div class="description">
+                    للتسجيل واستلام الكارت
+                </div> -->
+            </div>
+
+            <i class="fa-solid fa-chevron-left arrow"></i>
+
+        </a>
+
+    </div>
+
+
+    <footer>
+        جميع الروابط المهمة في مكان واحد ❤️
+    </footer>
+
+</div>
 
 </body>
 </html>
+```
